@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     public abstract partial class Structure
     {

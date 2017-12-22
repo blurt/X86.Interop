@@ -4,12 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Runtime.InteropServices;
+
 #if DEBUG
 using log4net;
 #endif
-using X86.Interop;
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     public abstract partial class Structure : IStructure
     {

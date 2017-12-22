@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     /// <summary>
     /// An array stored contiguously in memory with indices of type T

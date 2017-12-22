@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     public interface IArray<out T> : IEnumerable<T>
     {

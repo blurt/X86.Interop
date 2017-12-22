@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+
 #if DEBUG
 using log4net;
 #endif
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     /// <summary>
     /// An array of pointers, where each pointer points to a structure of type T
     /// </summary>
-    public class PointerArray<T> : Array<Pointer>, IPointerArray<T> where T : Structure, new()
+    public class PointerArray<T> : Array<Pointer>, IArray<T> where T : Structure, new()
     {
         private static readonly Func<IntPtr, T> Constructor =
             ConstructorDelegate.Compile<Func<IntPtr, T>>(typeof(T));

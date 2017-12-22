@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     /// <summary>
     /// Manages memory allocation and deallocation for unmanaged objects, such as Structures.

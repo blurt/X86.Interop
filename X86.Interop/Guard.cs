@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.IO;
 
 namespace X86.Interop
 {
-
     /// <summary>
     /// Guard class, used for guard clauses and argument validation
     /// </summary>

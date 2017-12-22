@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace X86.Interop
 {
     public interface IPatch : IX86Asm, IDisposable

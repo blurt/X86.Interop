@@ -1,9 +1,8 @@
-﻿
+﻿using System;
+
 #if DEBUG
 using log4net;
 #endif
-
-using System;
 
 namespace X86.Interop
 {

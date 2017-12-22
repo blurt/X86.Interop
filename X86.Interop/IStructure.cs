@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace D2XF.Game.Structures
+namespace X86.Interop
 {
     public interface IStructure : IDisposable
     {
