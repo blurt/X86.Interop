@@ -1,2 +1,91 @@
 # X86.Interop
 .NET library to patch native code, intercept execution, and marshal complex unmanaged structures.
+
+# Patching native code
+
+```
+// Patch a location relative to a native dll:
+var patch = new CallPatch("myNativeDll.dll", 0x4FF2,
+	writer =>
+	{
+		//TODO: write intercept code
+	});
+
+// or specify exact address:
+var patch = new CallPatch(0x12341234, writer => {})
+
+patch.Install();   // installs the patch
+patch.Uninstall(); // swaps back original asm
+```
+
+
+# Writing to memory
+
+```
+// Write a no op instruction at memory address 0xFFFF8000
+X86Asm.At(0xFFFF8000).Write(writer => writer.Nop());
+// or use raw bytes
+X86Asm.At(0xFFFF8000).Write(new byte[] { 0x90 });
+
+
+// Write a new block of asm, managed by our application
+var asm = X86Asm.Create(writer =>
+{
+	writer.Add32(X86Register32.EAX, 1);
+	writer.Cmp32(X86Register32.EAX, 1);
+});
+Console.WriteLine($"Asm block allocated at {asm.Address}");
+asm.Dispose(); // free asm block
+
+```
+
+
+# Marshalling complex structures
+
+Traditional marshalling requires you to marshal over the entire unmanaged structure. It also has trouble with nested structures.
+Here we can create c# wrappers for the unmanaged structures. The class is opaque -- values are marshalled over as needed.
+
+```
+public class MyUnmanagedStructure : X86.Interop.Structure
+{
+		// creates an instance of the unmanaged structure
+        public MyUnmanagedStructure() : base() { }
+
+		// reference an unmanaged structure at a particular location in memory
+        public MyUnmanagedStructure(IntPtr baseAddress) : base(baseAddress) { }
+
+		// WORD at 0x00
+		public UInt16 My16BitInteger
+        {
+            get { return ReadUInt16(0x00); } // read 16 bit integer at offset 0x00
+            set { WriteUInt16(0x00, value); }
+        }
+
+		// DWORD at 0x02 -- pointer to NestedStructure
+		// a nice pattern emerges to dynamically create a reference to a nested unmanaged structure
+		public NestedStructure NestedStruct
+        {
+            get { return TryReadIntPtr(0x02, out IntPtr nestedStructPtr) ? new NestedStruct(nestedStructPtr) : null; }
+            set { WriteStructPointer(Offset_pArray, value); }
+        }
+
+		// DWORD at 0x06 -- pointer to an array of structures stored contiguously in memory
+		// OtherStruct[4]
+        public Array<OtherStruct> Items
+        {
+            get { return TryReadIntPtr(0x06, out IntPtr arrayPtr) ? new Array<OtherStruct>(arrayPtr) { Length = ItemsCount } : null; }
+            set { WriteStructPointer(Offset_pArray, value); }
+        }
+
+		// DWORD at 0x10 -- length of above array
+		public UInt32 ItemsCount
+		{
+            get { return ReadUInt32(0x10); } // read 16 bit integer at offset 0x00
+            set { WriteUInt32(0x10, value); }
+		}
+
+		// also have type PointerArray<>
+
+		public override int GetSize() { return 0x14 * sizeof(byte); }
+}
+```

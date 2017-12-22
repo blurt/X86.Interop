@@ -31,8 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
-               Condition="'$(Configuration)' == 'Debug'">
+    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL" Condition="'$(Configuration)' == 'Debug'">
       <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -53,7 +52,6 @@
     <Compile Include="IArray.cs" />
     <Compile Include="IntPtrExtensions.cs" />
     <Compile Include="IPatch.cs" />
-    <Compile Include="IPointerArray.cs" />
     <Compile Include="IStructure.cs" />
     <Compile Include="IX86Asm.cs" />
     <Compile Include="JumpPatch.cs" />
