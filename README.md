@@ -5,8 +5,6 @@ A .NET library to:
 - create wrappers for complex unmanaged structures
 
 Supports net40 and net45
-P/Invokes kernel32
-
 
 # Writing to memory
 
@@ -42,7 +40,7 @@ var patch = new CallPatch("myNativeDll.dll", 0x4FF2,
 	});
 
 // or specify exact address:
-var patch = new CallPatch(0x12341234, writer => {})
+var patch = new JumpPatch(0x12341234, writer => {})
 
 patch.Install();   // installs the patch
 patch.Uninstall(); // swaps back original asm
@@ -56,13 +54,13 @@ Here we can create c# wrappers for the unmanaged structures. The class is opaque
 
 ```
 
-public class MyUnmanagedStructure : X86.Interop.Structure
+public class MyStructure : X86.Interop.Structure
 {
 	// creates an instance of the structure, which will be allocated and managed by the base class
-	public MyUnmanagedStructure() : base() { }
+	public MyStructure() : base() { }
 
 	// reference an unmanaged structure at a particular location in memory
-	public MyUnmanagedStructure(IntPtr baseAddress) : base(baseAddress) { }
+	public MyStructure(IntPtr baseAddress) : base(baseAddress) { }
 
 	// WORD at 0x00
 	public UInt16 My16BitInteger
@@ -76,14 +74,14 @@ public class MyUnmanagedStructure : X86.Interop.Structure
 	public NestedStructure NestedStruct
 	{
 		get { return TryReadIntPtr(0x02, out IntPtr nestedStructPtr) ? new NestedStruct(nestedStructPtr) : null; }
-		set { WriteStructPointer(Offset_pArray, value); }
+		set { WriteStructPointer(0x02, value); }
 	}
 
 	// DWORD at 0x06 -- pointer to an array of structures stored contiguously in memory
 	public Array<OtherStruct> Items
 	{
 		get { return TryReadIntPtr(0x06, out IntPtr arrayPtr) ? new Array<OtherStruct>(arrayPtr) { Length = ItemsCount } : null; }
-		set { WriteStructPointer(Offset_pArray, value); }
+		set { WriteStructPointer(0x06, value); }
 	}
 
 	// DWORD at 0x10 -- length of above array
