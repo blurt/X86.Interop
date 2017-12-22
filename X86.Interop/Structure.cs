@@ -480,7 +480,11 @@ namespace D2XF.Game.Structures
                         indexerProp = p;
                         continue;
                     }
+#if NET40
+                    var propInstance = p.GetValue(this, null) as Structure;
+#else
                     var propInstance = p.GetValue(this) as Structure;
+#endif
                     if (propInstance == null || HasVisited(propInstance, visitedStructs))
                         continue;
                     yield return propInstance;
