@@ -1,23 +1,11 @@
 # X86.Interop
-.NET library to patch native code, intercept execution, and marshal complex unmanaged structures.
+A .NET library to:
+- write X86 asm to memory
+- patch native dlls at runtime, intercept execution
+- create wrappers for complex unmanaged structures
 
-# Patching native code
-
-```
-// Patch a location relative to a native dll:
-var patch = new CallPatch("myNativeDll.dll", 0x4FF2,
-	writer =>
-	{
-		// See Marshal.GetFunctionPointerForDelegate to acquire a pointer to a .NET delegate
-		// TODO: write intercept asm
-	});
-
-// or specify exact address:
-var patch = new CallPatch(0x12341234, writer => {})
-
-patch.Install();   // installs the patch
-patch.Uninstall(); // swaps back original asm
-```
+Supports net40 and net45
+P/Invokes kernel32
 
 
 # Writing to memory
@@ -40,10 +28,30 @@ asm.Dispose(); // free asm block
 
 ```
 
+# Patching native code
+
+```
+// Patch a location relative to a native dll:
+var patch = new CallPatch("myNativeDll.dll", 0x4FF2,
+	writer =>
+	{
+		// See Marshal.GetFunctionPointerForDelegate to acquire a pointer to a .NET delegate
+		writer.PushAd(); //push all registers to stack
+		// TODO: write intercept asm .. don't mess up the stack!
+		writer.PopAd(); // restore registers
+	});
+
+// or specify exact address:
+var patch = new CallPatch(0x12341234, writer => {})
+
+patch.Install();   // installs the patch
+patch.Uninstall(); // swaps back original asm
+```
+
 
 # Marshalling complex structures
 
-Traditional marshalling requires you to marshal over the entire unmanaged structure. It also has trouble with nested structures.
+Traditional marshalling requires you to marshal over the entire unmanaged structure. There are also limitations with marshalling pointers to nested structures.
 Here we can create c# wrappers for the unmanaged structures. The class is opaque -- values are marshalled over as needed.
 
 ```
