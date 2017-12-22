@@ -72,7 +72,6 @@ public class MyUnmanagedStructure : X86.Interop.Structure
 	}
 
 	// DWORD at 0x06 -- pointer to an array of structures stored contiguously in memory
-	// OtherStruct[4]
 	public Array<OtherStruct> Items
 	{
 		get { return TryReadIntPtr(0x06, out IntPtr arrayPtr) ? new Array<OtherStruct>(arrayPtr) { Length = ItemsCount } : null; }
