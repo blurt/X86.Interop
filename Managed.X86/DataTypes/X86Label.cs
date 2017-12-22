@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Managed.X86 {
+namespace X86.Interop {
 	public class X86Label {
 		readonly X86Writer writer;
 		IntPtr? mark;

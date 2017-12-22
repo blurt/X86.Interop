@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Managed.X86 {
+namespace X86.Interop {
 	partial class X86Writer {
 		public void Cmp8(X86Register8 dest, X86Register8 src) {
 			writer.Write(new byte[] { 0x38 });

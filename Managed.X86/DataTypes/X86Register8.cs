@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Managed.X86 {
+namespace X86.Interop {
 	public enum X86Register8 : byte {
 		AL = 0,
 		CL = 1,

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace Managed.X86 {
+namespace X86.Interop {
 	public struct X86Address {
 		public readonly X86Register32 BaseRegister;
 		public readonly Int32 Offset;

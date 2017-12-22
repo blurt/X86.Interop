@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Managed.X86 {
+namespace X86.Interop {
 	partial class X86Writer {
 		public void Jmp(Int32 displacement) {
 			writer.Write(new byte[] { 0xE9 });

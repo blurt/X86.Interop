@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Managed.X86 {
+namespace X86.Interop {
 	public enum X86ShiftOpCode {
 		SHLD = 0, // TODO: Is this value correct?
 		SHLR = 1, // TODO: Is this value correct?
