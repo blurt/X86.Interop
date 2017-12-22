@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ABDDA409-909E-474D-8688-AE64B5195133}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>X86.Interop</RootNamespace>
+    <AssemblyName>X86.Interop</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL"
+               Condition="'$(Configuration)' == 'Debug'">
+      <HintPath>..\packages\log4net.2.0.7\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\X86.Interop\Array.cs">
+      <Link>Array.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\CallPatch.cs">
+      <Link>CallPatch.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\ConstructorDelegate.cs">
+      <Link>ConstructorDelegate.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\DllHelper.cs">
+      <Link>DllHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\Guard.cs">
+      <Link>Guard.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\IArray.cs">
+      <Link>IArray.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\IntPtrExtensions.cs">
+      <Link>IntPtrExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\IPatch.cs">
+      <Link>IPatch.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\IPointerArray.cs">
+      <Link>IPointerArray.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\IStructure.cs">
+      <Link>IStructure.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\IX86Asm.cs">
+      <Link>IX86Asm.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\JumpPatch.cs">
+      <Link>JumpPatch.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\Kernel32.cs">
+      <Link>Kernel32.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\ManagedX86Asm.cs">
+      <Link>ManagedX86Asm.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\MemoryManager.cs">
+      <Link>MemoryManager.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\Patch.cs">
+      <Link>Patch.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\Pointer.cs">
+      <Link>Pointer.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\PointerArray.cs">
+      <Link>PointerArray.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\Structure.cs">
+      <Link>Structure.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\Structure.Debug.cs">
+      <Link>Structure.Debug.cs</Link>
+    </Compile>
+    <Compile Include="..\X86.Interop\X86Asm.cs">
+      <Link>X86Asm.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Managed.X86.net40\Managed.X86.Net40.csproj">
+      <Project>{d791ce3f-7d06-4c0c-bd3f-75c479793e7f}</Project>
+      <Name>Managed.X86.Net40</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

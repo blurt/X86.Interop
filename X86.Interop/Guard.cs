@@ -2,7 +2,7 @@
 using System.Collections;
 using System.IO;
 
-namespace Managed.X86.Interop
+namespace X86.Interop
 {
 
     /// <summary>

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X86.Interop", "X86.Interop\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Managed.X86", "Managed.X86\Managed.X86.csproj", "{1AAF4B4D-2986-4F56-BEBC-EEC6EA0EE435}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Managed.X86.Net40", "Managed.X86.net40\Managed.X86.Net40.csproj", "{D791CE3F-7D06-4C0C-BD3F-75C479793E7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X86.Interop.Net40", "X86.Interop.Net40\X86.Interop.Net40.csproj", "{ABDDA409-909E-474D-8688-AE64B5195133}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{1AAF4B4D-2986-4F56-BEBC-EEC6EA0EE435}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AAF4B4D-2986-4F56-BEBC-EEC6EA0EE435}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AAF4B4D-2986-4F56-BEBC-EEC6EA0EE435}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D791CE3F-7D06-4C0C-BD3F-75C479793E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D791CE3F-7D06-4C0C-BD3F-75C479793E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D791CE3F-7D06-4C0C-BD3F-75C479793E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D791CE3F-7D06-4C0C-BD3F-75C479793E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDDA409-909E-474D-8688-AE64B5195133}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDDA409-909E-474D-8688-AE64B5195133}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDDA409-909E-474D-8688-AE64B5195133}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDDA409-909E-474D-8688-AE64B5195133}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

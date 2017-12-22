@@ -5,7 +5,7 @@ using log4net;
 
 using System;
 
-namespace Managed.X86.Interop
+namespace X86.Interop
 {
     /// <summary>
     /// Represents managed X86 assembly at a particular location in memory.

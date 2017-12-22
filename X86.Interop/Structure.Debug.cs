@@ -1,4 +1,4 @@
-﻿using Managed.X86.Interop;
+﻿using X86.Interop;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

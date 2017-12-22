@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Managed.X86.Interop
+namespace X86.Interop
 {
     #region Enumerations
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Managed.X86.Interop
+namespace X86.Interop
 {
     /// <summary>
     /// Patches a location in memory with a CALL instruction to intercept execution.

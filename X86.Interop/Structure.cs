@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 #if DEBUG
 using log4net;
 #endif
-using Managed.X86.Interop;
+using X86.Interop;
 
 namespace D2XF.Game.Structures
 {

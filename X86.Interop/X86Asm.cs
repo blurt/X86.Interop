@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Managed.X86.Interop
+namespace X86.Interop
 {
     /// <summary>
     /// X86 assembly at a particular location in memory.

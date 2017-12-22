@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Managed.X86.Interop
+namespace X86.Interop
 {
     /// <summary>
     /// X86 asm at a particular location in memory.
