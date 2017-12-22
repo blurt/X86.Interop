@@ -7,7 +7,7 @@
     <ProjectGuid>{20BD2FA4-8D3D-4406-8A6F-34511283FF72}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Managed.X86.Interop</RootNamespace>
+    <RootNamespace>X86.Interop</RootNamespace>
     <AssemblyName>Managed.X86.Interop</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -8,7 +8,7 @@
     <ProjectGuid>{1AAF4B4D-2986-4F56-BEBC-EEC6EA0EE435}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Managed.X86</RootNamespace>
+    <RootNamespace>X86.Interop</RootNamespace>
     <AssemblyName>Managed.X86</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
