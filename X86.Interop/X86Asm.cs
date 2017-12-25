@@ -33,7 +33,7 @@ namespace X86.Interop
         public int Write(byte[] bytes)
         {
 #if DEBUG
-            Log.DebugFormat("Copying {0} bytes to 0x{1}.", bytes.Length, Address.ToHexString());
+            Log.DebugFormat("Copying {0} bytes to {1}.", bytes.Length, Address.ToHexString());
 #endif
             Marshal.Copy(bytes, 0, Address, bytes.Length);
             return bytes.Length;

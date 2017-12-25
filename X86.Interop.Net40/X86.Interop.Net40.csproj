@@ -26,7 +26,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET40</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -67,9 +67,6 @@
     </Compile>
     <Compile Include="..\X86.Interop\IPatch.cs">
       <Link>IPatch.cs</Link>
-    </Compile>
-    <Compile Include="..\X86.Interop\IPointerArray.cs">
-      <Link>IPointerArray.cs</Link>
     </Compile>
     <Compile Include="..\X86.Interop\IStructure.cs">
       <Link>IStructure.cs</Link>

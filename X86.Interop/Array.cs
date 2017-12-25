@@ -11,8 +11,9 @@ namespace X86.Interop
     {
         private static readonly Func<IntPtr, T> Constructor =
             ConstructorDelegate.Compile<Func<IntPtr, T>>(typeof(T));
+        public static readonly int TSize = DetermineSize();
+
         private int _length;
-        public static int TSize = DetermineSize();
 
         public Array() { }
         public Array(IntPtr baseAddress) : base(baseAddress) { }

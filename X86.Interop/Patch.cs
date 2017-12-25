@@ -3,7 +3,7 @@
 namespace X86.Interop
 {
     /// <summary>
-    /// Patches a location in memory <see cref="Install()"/> <seealso cref="Uninstall()"/>
+    /// Patches a location in memory. See <see cref="Install()"/> <seealso cref="Uninstall()"/>
     /// </summary>
     public class Patch : IPatch
     {
