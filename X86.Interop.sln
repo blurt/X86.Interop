@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Managed.X86.Net40", "Manage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "X86.Interop.Net40", "X86.Interop.Net40\X86.Interop.Net40.csproj", "{ABDDA409-909E-474D-8688-AE64B5195133}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F83964F8-1D22-4CA8-A6DB-2421E5C9E467}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		X86.Interop.nuspec = X86.Interop.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

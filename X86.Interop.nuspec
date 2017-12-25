@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>X86.Interop</id>
+    <version>0.1.0</version>
+    <authors>blurt</authors>
+    <owners>blurt</owners>
+    <licenseUrl>https://github.com/blurt/X86.Interop</licenseUrl>
+    <projectUrl>https://github.com/blurt/X86.Interop</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET library to write X86 asm at runtime, and marshal complex unmanaged structures.</description>
+    <releaseNotes>P/Invokes Kernel32.dll</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>X86 interop patch marshal marshalling</tags>
+    <dependencies>
+      <!--<dependency id="SampleDependency" version="1.0" />-->
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="X86.Interop\bin\Release\*.dll" target="lib\net45" />
+    <file src="X86.Interop.Net40\bin\Release\*.dll" target="lib\net40" />
+  </files>
+</package>
