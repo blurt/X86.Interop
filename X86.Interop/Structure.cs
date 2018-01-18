@@ -125,18 +125,12 @@ namespace X86.Interop
             BaseAddress = IntPtr.Zero;
         }
 
-        protected IntPtr GetOffset(UInt32 offset)
+        protected IntPtr GetOffset(Int32 offset)
         {
             return BaseAddress.AddOffset(offset);
         }
-
-        // TODO: revise
-        protected IntPtr GetOffset(Int32 offset)
-        {
-            return (IntPtr)GetOffset(offset);
-        }
-
-        protected Byte[] ReadBytes(UInt32 offset, Int32 count)
+        
+        protected Byte[] ReadBytes(Int32 offset, Int32 count)
         {
             Byte[] buffer = new Byte[count];
             try
@@ -153,7 +147,7 @@ namespace X86.Interop
             return buffer;
         }
 
-        protected void WriteBytes(UInt32 offset, Byte[] value)
+        protected void WriteBytes(Int32 offset, Byte[] value)
         {
             try
             {
@@ -169,7 +163,7 @@ namespace X86.Interop
             }
         } 
 
-        protected Byte ReadByte(UInt32 offset)
+        protected Byte ReadByte(Int32 offset)
         {
             try
             {
@@ -185,7 +179,7 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteByte(UInt32 offset, Byte value)
+        protected void WriteByte(Int32 offset, Byte value)
         {
             try
             {
@@ -201,7 +195,7 @@ namespace X86.Interop
             }
         }
 
-        protected Int16 ReadInt16(UInt32 offset)
+        protected Int16 ReadInt16(Int32 offset)
         {
             try
             {
@@ -217,7 +211,7 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteInt16(UInt32 offset, Int16 value)
+        protected void WriteInt16(Int32 offset, Int16 value)
         {
             try
             {
@@ -233,7 +227,7 @@ namespace X86.Interop
             }
         }
 
-        protected UInt16 ReadUInt16(UInt32 offset)
+        protected UInt16 ReadUInt16(Int32 offset)
         {
             try
             {
@@ -249,26 +243,26 @@ namespace X86.Interop
             }
         }
 
-        protected UInt16[] ReadUInt16Array(UInt32 offset, int length)
+        protected UInt16[] ReadUInt16Array(Int32 offset, int length)
         {
             UInt16[] ret = new UInt16[length];
-            for (uint i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
                 ret[i] = ReadUInt16(offset + (2 * i));
             return ret;
         }
 
-        protected void WriteUInt16(UInt32 offset, UInt16 value)
+        protected void WriteUInt16(Int32 offset, UInt16 value)
         {
             WriteBytes(offset, BitConverter.GetBytes(value));
         }
 
-        protected void WriteUInt16Array(UInt32 offset, UInt16[] value, int length)
+        protected void WriteUInt16Array(Int32 offset, UInt16[] value, int length)
         {
-            for (uint i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
                 WriteUInt16(offset + (2 * i), value[i]);
         }
 
-        protected Int32 ReadInt32(UInt32 offset)
+        protected Int32 ReadInt32(Int32 offset)
         {
             try
             {
@@ -284,7 +278,7 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteInt32(UInt32 offset, Int32 value)
+        protected void WriteInt32(Int32 offset, Int32 value)
         {
             try
             {
@@ -300,31 +294,31 @@ namespace X86.Interop
             }
         }
 
-        protected UInt32[] ReadUInt32Array(UInt32 offset, int length)
+        protected UInt32[] ReadUInt32Array(Int32 offset, int length)
         {
             UInt32[] ret = new UInt32[length];
-            for (uint i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
                 ret[i] = ReadUInt32(offset + (4 * i));
             return ret;
         }
 
-        protected UInt32 ReadUInt32(UInt32 offset)
+        protected UInt32 ReadUInt32(Int32 offset)
         {
             return BitConverter.ToUInt32(ReadBytes(offset, sizeof(UInt32)), 0);
         }
 
-        protected void WriteUInt32(UInt32 offset, UInt32 value)
+        protected void WriteUInt32(Int32 offset, UInt32 value)
         {
             WriteBytes(offset, BitConverter.GetBytes(value));
         }
 
-        protected void WriteUInt32Array(UInt32 offset, UInt32[] value, int length)
+        protected void WriteUInt32Array(Int32 offset, UInt32[] value, int length)
         {
-            for (uint i = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
                 WriteUInt32(offset + (4 * i), value[i]);
         }
 
-        protected Int64 ReadInt64(UInt32 offset)
+        protected Int64 ReadInt64(Int32 offset)
         {
             try
             {
@@ -340,7 +334,7 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteInt64(UInt32 offset, Int64 value)
+        protected void WriteInt64(Int32 offset, Int64 value)
         {
             try
             {
@@ -356,17 +350,17 @@ namespace X86.Interop
             }
         }
 
-        protected UInt64 ReadUInt64(UInt32 offset)
+        protected UInt64 ReadUInt64(Int32 offset)
         {
             return BitConverter.ToUInt64(ReadBytes(offset, sizeof(UInt64)), 0);
         }
 
-        protected void WriteUInt64(UInt32 offset, UInt64 value)
+        protected void WriteUInt64(Int32 offset, UInt64 value)
         {
             WriteBytes(offset, BitConverter.GetBytes(value));
         }
 
-        protected IntPtr ReadIntPtr(UInt32 offset)
+        protected IntPtr ReadIntPtr(Int32 offset)
         {
             try
             {
@@ -378,17 +372,17 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
-        protected bool TryReadIntPtr(UInt32 offset, out IntPtr ptr)
+        protected bool TryReadIntPtr(Int32 offset, out IntPtr ptr)
         {
             ptr = ReadIntPtr(offset);
             return ptr != IntPtr.Zero;
         }
 
-        protected void WriteIntPtr(UInt32 offset, IntPtr value)
+        protected void WriteIntPtr(Int32 offset, IntPtr value)
         {
             try
             {
@@ -404,7 +398,7 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteStructPointer(UInt32 offset, object value)
+        protected void WriteStructPointer(Int32 offset, object value)
         {
             var structure = value as IStructure;
             if (structure == null)
@@ -413,12 +407,12 @@ namespace X86.Interop
         }
 
 
-        protected void WriteStructPointer(UInt32 offset, IStructure structure)
+        protected void WriteStructPointer(Int32 offset, IStructure structure)
         {
             WriteIntPtr(offset, structure == null ? IntPtr.Zero : structure.BaseAddress);
         }
 
-            protected String ReadAnsiString(UInt32 offset)
+            protected String ReadAnsiString(Int32 offset)
         {
             try
             {
@@ -435,12 +429,12 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteAnsiString(UInt32 offset, String value)
+        protected void WriteAnsiString(Int32 offset, String value)
         {
             WriteBytes(offset, Encoding.ASCII.GetBytes(value));
         }
 
-        protected String ReadUnicodeString(UInt32 offset)
+        protected String ReadUnicodeString(Int32 offset)
         {
             try
             {
@@ -456,7 +450,7 @@ namespace X86.Interop
             }
         }
 
-        protected void WriteUnicodeString(UInt32 offset, String value)
+        protected void WriteUnicodeString(Int32 offset, String value)
         {
             WriteBytes(offset, Encoding.Unicode.GetBytes(value));
         }

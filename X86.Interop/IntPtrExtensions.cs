@@ -10,7 +10,7 @@ namespace X86.Interop
                                               : string.Format("0x{0:x16}", address.ToInt64());
         }
 
-        public static IntPtr AddOffset(this IntPtr baseAddress, UInt32 offset)
+        public static IntPtr AddOffset(this IntPtr baseAddress, int offset)
         {
             return Environment.Is64BitProcess ? (IntPtr)(baseAddress.ToInt64() + offset)
                                               : (IntPtr)(baseAddress.ToInt32() + offset);

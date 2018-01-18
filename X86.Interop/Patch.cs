@@ -19,7 +19,7 @@ namespace X86.Interop
             _rawBytes = rawBytes;
         }
 
-        public Patch(string dllName, UInt32 offset, byte[] rawBytes)
+        public Patch(string dllName, Int32 offset, byte[] rawBytes)
             : this(DllHelper.GetOffset(dllName, offset))
         {
             Guard.ArgumentNotNullOrEmpty(nameof(dllName), dllName);
@@ -34,7 +34,7 @@ namespace X86.Interop
             _writeAsm = writeAsm;
         }
 
-        public Patch(string dllName, UInt32 offset, Action<X86Writer> writeAsm)
+        public Patch(string dllName, Int32 offset, Action<X86Writer> writeAsm)
             : this(DllHelper.GetOffset(dllName, offset))
         {
             Guard.ArgumentNotNullOrEmpty(nameof(dllName), dllName);

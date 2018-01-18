@@ -29,7 +29,7 @@ namespace X86.Interop
         /// <param name="dllName">The name of the native dll loaded in memory</param>
         /// <param name="offset">The offset from the base address of the dll</param>
         /// <param name="writeIntercept">A delegate that writes the intercept asm, which will be JMPed to</param>
-        public JumpPatch(string dllName, UInt32 offset, Action<X86Writer> writeIntercept)
+        public JumpPatch(string dllName, Int32 offset, Action<X86Writer> writeIntercept)
             : this(DllHelper.GetOffset(dllName, offset), writeIntercept)
         {
         }

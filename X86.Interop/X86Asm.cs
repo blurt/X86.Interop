@@ -49,7 +49,7 @@ namespace X86.Interop
             return new X86Asm(address);
         }
 
-        public static X86Asm At(string dllName, UInt32 offset)
+        public static X86Asm At(string dllName, Int32 offset)
         {
             return new X86Asm(DllHelper.GetOffset(dllName, offset));
         }

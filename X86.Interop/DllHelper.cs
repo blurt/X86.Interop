@@ -5,7 +5,7 @@ namespace X86.Interop
 {
     public static class DllHelper
     {
-        public static IntPtr GetOffset(string dllName, UInt32 offset)
+        public static IntPtr GetOffset(string dllName, Int32 offset)
         {
             Guard.ArgumentNotNullOrEmpty(nameof(dllName), dllName);
             return GetDllBaseAddress(dllName).AddOffset(offset);
