@@ -13,7 +13,18 @@ namespace X86.Interop
         /// <summary>
         /// Patches a location in memory with a JMP instruction to intercept execution.
         /// </summary>
-        /// <param name="address">The address to write the JMP asm</param>
+        /// <param name="address">The address to patch</param>
+        /// <param name="callTarget">The target address to JMP to</param>
+        public JumpPatch(IntPtr address, IntPtr callTarget)
+            : base(address)
+        {
+            _writeAsm = writer => writer.Jmp(callTarget);
+        }
+
+        /// <summary>
+        /// Patches a location in memory with a JMP instruction to intercept execution.
+        /// </summary>
+        /// <param name="address">The address to patch</param>
         /// <param name="writeIntercept">A delegate that writes the intercept asm, which will be JMPed to</param>
         public JumpPatch(IntPtr address, Action<X86Writer> writeIntercept)
             : base(address)

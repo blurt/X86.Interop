@@ -54,8 +54,8 @@ namespace X86.Interop
 
         public void Dispose()
         {
-            Dispose(true);
             GC.SuppressFinalize(this);
+            Dispose(true);
         }
 
         protected virtual void Dispose(bool disposing)

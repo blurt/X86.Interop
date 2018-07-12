@@ -48,6 +48,7 @@
     <Compile Include="CallPatch.cs" />
     <Compile Include="ConstructorDelegate.cs" />
     <Compile Include="DllHelper.cs" />
+    <Compile Include="FastCallWrapper.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="IArray.cs" />
     <Compile Include="IntPtrExtensions.cs" />

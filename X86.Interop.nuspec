@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>X86.Interop</id>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
     <authors>blurt</authors>
     <owners>blurt</owners>
     <licenseUrl>https://github.com/blurt/X86.Interop</licenseUrl>

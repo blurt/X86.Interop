@@ -44,6 +44,11 @@ namespace X86.Interop
             return GetDelegateFromPointer<T>(fnAddress);
         }
 
+        public static IntPtr GetIntPtrFromOrdinal(string dllName, UInt16 ordinal)
+        {
+            return Kernel32.GetProcAddress(GetDllBaseAddress(dllName), ordinal);
+        }
+
         public static T GetDelegateFromPointer<T>(IntPtr fnAddress) where T : class
         {
             try

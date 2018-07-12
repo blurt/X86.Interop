@@ -159,7 +159,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         } 
 
@@ -175,7 +175,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -191,7 +191,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -207,7 +207,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -223,7 +223,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -239,7 +239,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -274,7 +274,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -290,7 +290,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -330,7 +330,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -346,7 +346,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -394,7 +394,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -425,7 +425,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
@@ -446,7 +446,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw ex;
+                throw;
             }
         }
 
