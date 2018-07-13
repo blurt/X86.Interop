@@ -1,4 +1,7 @@
-﻿using System;
+﻿#if DEBUG
+using log4net;
+#endif
+using System;
 
 namespace X86.Interop
 {
@@ -7,6 +10,10 @@ namespace X86.Interop
     /// </summary>
     public class Patch : IPatch
     {
+#if DEBUG
+        private static readonly ILog Log = LogManager.GetLogger(typeof(Patch));
+#endif
+
         protected Action<X86Writer> _writeAsm;
         private readonly byte[] _rawBytes;
         private byte[] _oldBytes;
@@ -80,6 +87,9 @@ namespace X86.Interop
                 return;
             }
 
+#if DEBUG
+            Log.DebugFormat("Saving {0} bytes to {1}.", bytes.Length, Address.ToHexString());
+#endif
             _oldBytes = new byte[bytes.Length];
             System.Runtime.InteropServices.Marshal.Copy(Address, _oldBytes, 0, bytes.Length);
 

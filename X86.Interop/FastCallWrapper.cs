@@ -14,6 +14,7 @@ namespace X86.Interop
     public class FastCallWrapper<TDelegate> : ManagedX86Asm
     {
         private readonly TDelegate _delegate;
+        private readonly IntPtr _fnPtr;
         private static readonly byte[] _template;
         private static readonly byte[] _callTemplate;
 
@@ -50,13 +51,14 @@ namespace X86.Interop
             //it is automatically disposed when the delegate is garbage collected
             //.. so it is necessary to keep a reference to the delegate
             _delegate = func;
-            var delegatePtr = Marshal.GetFunctionPointerForDelegate(_delegate);
-            Write(ReplaceStubAddress(_template, delegatePtr));
+            _fnPtr = Marshal.GetFunctionPointerForDelegate(_delegate);
+            Write(ReplaceStubAddress(_template, _fnPtr));
         }
 
         public FastCallWrapper(IntPtr pFunction) : base(_callTemplate.Length)
         {
-            Write(ReplaceStubAddress(_callTemplate, pFunction));
+            _fnPtr = pFunction;
+            Write(ReplaceStubAddress(_callTemplate, _fnPtr));
             _delegate = Marshal.GetDelegateForFunctionPointer<TDelegate>(Address);
         }
 

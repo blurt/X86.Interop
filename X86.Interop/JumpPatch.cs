@@ -9,16 +9,18 @@ namespace X86.Interop
     {
         private readonly Action<X86Writer> _writeIntercept;
         private ManagedX86Asm _asm;
+        private IntPtr _jumpTarget;
 
         /// <summary>
         /// Patches a location in memory with a JMP instruction to intercept execution.
         /// </summary>
         /// <param name="address">The address to patch</param>
         /// <param name="callTarget">The target address to JMP to</param>
-        public JumpPatch(IntPtr address, IntPtr callTarget)
+        public JumpPatch(IntPtr address, IntPtr jumpTarget)
             : base(address)
         {
-            _writeAsm = writer => writer.Jmp(callTarget);
+            _jumpTarget = jumpTarget;
+            _writeAsm = writer => writer.Jmp(_jumpTarget);
         }
 
         /// <summary>
@@ -50,7 +52,11 @@ namespace X86.Interop
         /// </summary>
         public IX86Asm Target
         {
-            get { return _asm ?? (_asm = X86Asm.Create(_writeIntercept)); }
+            get
+            {
+                return _jumpTarget != IntPtr.Zero ? X86Asm.At(_jumpTarget)
+                                                  : _asm ?? (_asm = X86Asm.Create(_writeIntercept));
+            }
         }
 
         protected override void Dispose(bool disposing)

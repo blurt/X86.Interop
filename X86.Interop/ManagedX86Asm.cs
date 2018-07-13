@@ -18,7 +18,7 @@ namespace X86.Interop
         {
             Size = size;
 #if DEBUG
-            Log.DebugFormat("Allocated {0} bytes at 0x{0:x8}.", Address);
+            Log.DebugFormat("Allocated {1} bytes at 0x{0:x8}.", Address, Size);
 #endif
             SetMemoryProtection(MemoryProtection.ExecuteReadWrite, size);
         }
@@ -54,12 +54,5 @@ namespace X86.Interop
         //        MemoryAllocationType.Commit | MemoryAllocationType.Reserve,
         //        MemoryProtection.ExecuteReadWrite);
         //Kernel32.VirtualFree(Address, 0, MemoryFreeType.Release);
-
-        internal MemoryProtection SetMemoryProtection(MemoryProtection protection, int length)
-        {
-            MemoryProtection memoryProtection = MemoryProtection.ExecuteReadWrite;
-            Kernel32.VirtualProtect(Address, length, MemoryProtection.ExecuteReadWrite, out memoryProtection);
-            return memoryProtection;
-        }
     }
 }

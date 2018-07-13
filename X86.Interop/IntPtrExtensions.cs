@@ -6,8 +6,8 @@ namespace X86.Interop
     {
         public static string ToHexString(this IntPtr address)
         {
-            return Environment.Is64BitProcess ? string.Format("0x{0:x8}", address.ToInt32())
-                                              : string.Format("0x{0:x16}", address.ToInt64());
+            return Environment.Is64BitProcess ? string.Format("0x{0:x16}", address.ToInt64())
+                                              : string.Format("0x{0:x8}", address.ToInt32());
         }
 
         public static IntPtr AddOffset(this IntPtr baseAddress, int offset)

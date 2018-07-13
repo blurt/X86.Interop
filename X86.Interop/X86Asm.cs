@@ -35,14 +35,14 @@ namespace X86.Interop
 #if DEBUG
             Log.DebugFormat("Copying {0} bytes to {1}.", bytes.Length, Address.ToHexString());
 #endif
+            MemoryProtection memoryProtection = SetMemoryProtection(MemoryProtection.ExecuteReadWrite, bytes.Length);
             Marshal.Copy(bytes, 0, Address, bytes.Length);
+            //SetMemoryProtection(memoryProtection, bytes.Length);
+#if DEBUG
+            Log.DebugFormat("Copied {0} bytes to {1}.", bytes.Length, Address.ToHexString());
+#endif
             return bytes.Length;
         }
-
-        //public void Execute()
-        //{
-        //  hmmm
-        //}
 
         public static X86Asm At(IntPtr address)
         {
@@ -69,6 +69,13 @@ namespace X86.Interop
             X86Writer writer = new X86Writer(stream, address);
             writeAction.Invoke(writer);
             return stream.ToArray();
+        }
+
+        internal MemoryProtection SetMemoryProtection(MemoryProtection protection, int length)
+        {
+            MemoryProtection memoryProtection = MemoryProtection.ExecuteReadWrite;
+            Kernel32.VirtualProtect(Address, length, MemoryProtection.ExecuteReadWrite, out memoryProtection);
+            return memoryProtection;
         }
     }
 }

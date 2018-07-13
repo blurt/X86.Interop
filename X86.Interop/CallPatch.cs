@@ -8,6 +8,7 @@ namespace X86.Interop
     public class CallPatch : Patch
     {
         private readonly Action<X86Writer> _writeIntercept;
+        private IntPtr _callTarget;
         private ManagedX86Asm _asm;
 
         /// <summary>
@@ -18,6 +19,7 @@ namespace X86.Interop
         public CallPatch(IntPtr address, IntPtr callTarget)
             : base(address)
         {
+            _callTarget = callTarget;
             _writeAsm = writer => writer.Call(callTarget);
         }
 
@@ -50,14 +52,18 @@ namespace X86.Interop
         /// </summary>
         public IX86Asm Target
         {
-            get { return _asm ?? (_asm = X86Asm.Create(_writeIntercept)); }
+            get
+            {
+                return _callTarget != IntPtr.Zero ? X86Asm.At(_callTarget)
+                                                  : _asm ?? (_asm = X86Asm.Create(_writeIntercept));
+            }
         }
 
         protected override void Dispose(bool disposing)
         {
             _asm?.Dispose();
             _asm = null;
-            base.Dispose();
+            base.Dispose(disposing);
         }
                 
         public override string ToString()

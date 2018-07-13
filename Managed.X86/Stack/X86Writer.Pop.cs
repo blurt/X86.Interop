@@ -23,7 +23,7 @@ namespace X86.Interop {
 		}
         public void PopAd()
         {
-            writer.Write(new byte[] { 0x60 });
+            writer.Write(new byte[] { 0x61 });
         }
     }
 }
