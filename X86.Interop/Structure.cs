@@ -19,13 +19,14 @@ namespace X86.Interop
 
         private static readonly MemoryManager MemoryManager = new MemoryManager();
 
-        private bool _isAllocated;
+        protected bool _isAllocated;
+        protected readonly bool _isReference;
 
         protected Structure()
         {
             Allocate();
         }
-
+        
         protected Structure(IntPtr baseAddress)
         {
             if (baseAddress == IntPtr.Zero)
@@ -33,6 +34,7 @@ namespace X86.Interop
                 string errMsg = string.Format("The base address of structure type \"{0}\" is IntPtr.Zero!", GetType());
                 throw new ArgumentException(errMsg);
             }
+            _isReference = true;
             BaseAddress = baseAddress;
         }
 

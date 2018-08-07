@@ -24,7 +24,7 @@ namespace X86.Interop
             set
             {
                 _length = value;
-                Allocate();
+                if (!_isReference) Allocate();
             }
         }
 
