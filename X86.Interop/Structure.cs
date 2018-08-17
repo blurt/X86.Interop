@@ -380,8 +380,16 @@ namespace X86.Interop
 
         protected bool TryReadIntPtr(Int32 offset, out IntPtr ptr)
         {
-            ptr = ReadIntPtr(offset);
-            return ptr != IntPtr.Zero;
+            try
+            {
+                ptr = ReadIntPtr(offset);
+                return ptr != IntPtr.Zero;
+            }
+            catch (AccessViolationException)
+            {
+                ptr = IntPtr.Zero;
+                return false;
+            }
         }
 
         protected void WriteIntPtr(Int32 offset, IntPtr value)
