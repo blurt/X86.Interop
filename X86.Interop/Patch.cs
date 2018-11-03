@@ -73,6 +73,8 @@ namespace X86.Interop
         
         public IntPtr Address { get; private set; }
         public bool IsInstalled { get; private set; }
+        public byte[] PatchedBytes => _oldBytes;
+
 
         public void Install()
         {

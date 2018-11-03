@@ -23,6 +23,12 @@ namespace X86.Interop
             _writeAsm = writer => writer.Call(callTarget);
         }
 
+        public CallPatch(IntPtr address, IX86Asm asm) : base(address)
+        {
+            _callTarget = asm.Address;
+            _writeAsm = writer => writer.Call(asm.Address);
+        }
+
         /// <summary>
         /// Patches a location in memory with a CALL instruction to intercept execution.
         /// </summary>

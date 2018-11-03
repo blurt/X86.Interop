@@ -111,7 +111,7 @@ namespace X86.Interop
         }
 
         // recursive dispose? probably not the best idea (hence commenting it out)
-        // but an interesting thought - for convenience-sake
+        // but an interesting thought - for convenience-sake .. hmmm
         private void DisposeInternal(IDictionary<IntPtr, bool> visitedStructs)
         {
 #if DEBUG
@@ -272,8 +272,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("ReadInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("ReadInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -288,8 +288,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("WriteInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("WriteInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -328,8 +328,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("ReadInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("ReadInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -344,8 +344,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("WriteInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("WriteInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -370,8 +370,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("ReadIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("ReadIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -400,8 +400,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("WriteIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("WriteIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -422,7 +422,7 @@ namespace X86.Interop
             WriteIntPtr(offset, structure == null ? IntPtr.Zero : structure.BaseAddress);
         }
 
-            protected String ReadAnsiString(Int32 offset)
+        protected String ReadAnsiString(Int32 offset)
         {
             try
             {
@@ -431,8 +431,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("ReadAnsiString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("ReadAnsiString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;
@@ -452,8 +452,8 @@ namespace X86.Interop
             }
             catch (Exception ex)
             {
-                string errMsg = string.Format("ReadUnicodeString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
 #if DEBUG
+                string errMsg = string.Format("ReadUnicodeString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 throw;

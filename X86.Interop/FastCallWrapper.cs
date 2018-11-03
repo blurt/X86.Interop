@@ -9,6 +9,7 @@ namespace X86.Interop
 {
     /// <summary>
     /// Creates a native stub of X86 that can either: call a __fastcall function pointer (for .NET -> X86 calls), or wrap a .NET delegate in a __fastcall function pointer (for X86 -> .NET)
+    /// Currently only supports delegates with up to 3 parameters, each of them 32bits.
     /// </summary>
     public class FastCallWrapper<TDelegate> : ManagedX86Asm
     {

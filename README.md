@@ -3,17 +3,18 @@ A .NET library to:
 - write X86 asm to memory
 - patch native dlls at runtime, intercept execution
 - create wrappers for complex unmanaged structures
+- support FastCall delegates
 
 Built on top of Managed.X86 project (http://code.google.com/p/managed-x86/) 
 This is only compatible with 32bit applications, X86_64 not supported.
  
 Available on NuGet. Supports net40, net45 and higher
 
-# Writing to memory
+# Example: Writing to memory
 ```
 // Write a no op instruction at memory address 0xFFFF8000
 X86Asm.At(0xFFFF8000).Write(writer => writer.Nop());
-// or use raw bytes
+// or use the equivalent raw bytes
 X86Asm.At(0xFFFF8000).Write(new byte[] { 0x90 });
 
 
@@ -28,9 +29,9 @@ asm.Dispose(); // free asm block
 
 ```
 
-# Patching native code
+# Example: Patching native code
 At runtime, patch a native dll that is loaded in memory. An offset is specified, the patch is applied relative to the base address of the loaded dll.
-This allows us to intercept or modify execution.
+This allows us to intercept or modify execution of the application.
 ```
 // Patch the native dll with a NO OP
 var patch = new Patch("myNativeDll.dll", 0x4FF2, writer => writer.Nop())
@@ -41,7 +42,8 @@ var patch = new CallPatch("myNativeDll.dll", 0x4FF2,
 	{
 		writer.PushAd(); //push all registers to stack
 		// TODO: write intercept asm .. don't mess up the stack!
-		// we can intercept execution to .NET via writer.Call( Marshal.GetFunctionPointerForDelegate(..) )
+		// we can intercept execution here by invoking a .NET delegate:
+		//		writer.Call( Marshal.GetFunctionPointerForDelegate(..) )
 		// we can also pass arguments to the .NET delegate by pushing them onto the stack
 		// see https://en.wikipedia.org/wiki/X86_calling_conventions for more info
 		writer.PopAd(); // restore registers
@@ -56,9 +58,10 @@ patch.Dispose();   // Uninstall and dispose managed asm block
 ```
 
 
-# Marshalling complex structures
+# Example: Marshalling complex structures
 
-Traditional marshalling requires you to marshal over the entire unmanaged structure. There are also limitations with marshalling pointers to nested structures.
+Traditional marshalling requires you to marshal over the entire unmanaged structure. There are also limitations with marshalling pointers to other structures, a call to Marshal.PtrToStructure will never dereference pointers.
+This makes it tedious to marshal over nested structures, and your c# models uglier are required to have IntPtr properties.
 
 Using the base class X86.Interop.Structure, we can create c# wrappers for the unmanaged structures. The class is opaque -- values are marshalled over as needed.
 
@@ -66,8 +69,15 @@ Using the base class X86.Interop.Structure, we can create c# wrappers for the un
 
 public class MyStructure : X86.Interop.Structure
 {
-	// create a wrapper for an unmanaged structure at a particular location in memory
+	// constructor: create a wrapper for an unmanaged structure at a particular location in memory
 	public MyStructure(IntPtr baseAddress) : base(baseAddress) { }
+
+	// constructor: allocate unmanaged memory for a new instance of MyStructure
+	public MyStructure() : base() { }
+	
+	// you must specify the size of the unmanaged structure, so that the library
+	// knows how much memory to allocate and how to iterate over a contiguous array
+	public override int GetSize() => 0x14;
 
 	// WORD at 0x00
 	public UInt16 My16BitInteger
@@ -94,12 +104,12 @@ public class MyStructure : X86.Interop.Structure
 	// DWORD at 0x10 -- length of above array
 	public UInt32 ItemsCount
 	{
-		get { return ReadUInt32(0x10); } // read 16 bit integer at offset 0x00
+		get { return ReadUInt32(0x10); }
 		set { WriteUInt32(0x10, value); }
 	}
 
 	// also have type PointerArray<T> for an array-of-pointers that point to structures of type T
 
-	public override int GetSize() { return 0x14 * sizeof(byte); }
 }
+
 ```
