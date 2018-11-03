@@ -23,6 +23,12 @@ namespace X86.Interop
             _writeAsm = writer => writer.Jmp(_jumpTarget);
         }
 
+        public JumpPatch(IntPtr address, IX86Asm asm) : base(address)
+        {
+            _jumpTarget = asm.Address;
+            _writeAsm = writer => writer.Call(asm.Address);
+        }
+
         /// <summary>
         /// Patches a location in memory with a JMP instruction to intercept execution.
         /// </summary>

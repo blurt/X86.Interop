@@ -60,8 +60,7 @@ patch.Dispose();   // Uninstall and dispose managed asm block
 
 # Example: Marshalling complex structures
 
-Traditional marshalling requires you to marshal over the entire unmanaged structure. There are also limitations with marshalling pointers to other structures, a call to Marshal.PtrToStructure will never dereference pointers.
-This makes it tedious to marshal over nested structures, and your c# models uglier are required to have IntPtr properties.
+Traditional marshalling requires you to marshal over the entire unmanaged structure. There are also limitations with marshalling pointers to other structures.
 
 Using the base class X86.Interop.Structure, we can create c# wrappers for the unmanaged structures. The class is opaque -- values are marshalled over as needed.
 
