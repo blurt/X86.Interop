@@ -9,7 +9,7 @@ namespace X86.Interop
 
         public IntPtr Value
         {
-            get { return ReadIntPtr(0); }
+            get { return TryReadIntPtr(0, out IntPtr ptr) ? ptr : IntPtr.Zero; }
             set { WriteIntPtr(0, value);}
         }
 

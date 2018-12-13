@@ -177,7 +177,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return 0;
             }
         }
 
@@ -209,7 +209,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return 0;
             }
         }
 
@@ -241,7 +241,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return 0;
             }
         }
 
@@ -276,7 +276,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return 0;
             }
         }
 
@@ -332,7 +332,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return 0;
             }
         }
 
@@ -374,7 +374,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return IntPtr.Zero;
             }
         }
 
@@ -435,7 +435,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadAnsiString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return null;
             }
         }
 
@@ -456,7 +456,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadUnicodeString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                return null;
             }
         }
 
