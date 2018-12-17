@@ -21,10 +21,12 @@ namespace X86.Interop
         static FastCallWrapper()
         {
             var methodInfo = typeof(TDelegate).GetMethod("Invoke");
+            if (methodInfo == null)
+                throw new Exception($"Type {typeof(TDelegate)} is not a delegate.");
             var numParameters = methodInfo.GetParameters().Count();
             switch (numParameters)
             {
-                // TODO: to support other parameter sizes, we could check for size using Marshal.SizeOf() and use appropriate template.. 
+                // TODO: check for parameter size using Marshal.SizeOf() and use appropriate template.. 
                 case 0:
                     _template = fastcall_void;
                     _callTemplate = call_fastcall_void;
@@ -41,7 +43,8 @@ namespace X86.Interop
                     _template = fastcall_dword_dword_dword;
                     _callTemplate = call_fastcall_dword_dword_dword;
                     break;;
-                default: throw new NotSupportedException($"Delegate of type {typeof(TDelegate)} is not yet supported.");
+                default:
+                    throw new NotSupportedException($"Delegate of type {typeof(TDelegate)} is not yet supported.");
             }
         }
 

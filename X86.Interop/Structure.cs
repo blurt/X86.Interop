@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Runtime.ExceptionServices;
 
 #if DEBUG
 using log4net;
@@ -132,6 +133,7 @@ namespace X86.Interop
             return BaseAddress.AddOffset(offset);
         }
         
+        [HandleProcessCorruptedStateExceptions]
         protected Byte[] ReadBytes(Int32 offset, Int32 count)
         {
             Byte[] buffer = new Byte[count];
@@ -163,8 +165,9 @@ namespace X86.Interop
 #endif
                 throw;
             }
-        } 
+        }
 
+        [HandleProcessCorruptedStateExceptions]
         protected Byte ReadByte(Int32 offset)
         {
             try
@@ -177,7 +180,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                return 0;
+                throw;
             }
         }
 
@@ -197,6 +200,7 @@ namespace X86.Interop
             }
         }
 
+        [HandleProcessCorruptedStateExceptions]
         protected Int16 ReadInt16(Int32 offset)
         {
             try
@@ -209,7 +213,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                return 0;
+                throw;
             }
         }
 
@@ -229,6 +233,7 @@ namespace X86.Interop
             }
         }
 
+        [HandleProcessCorruptedStateExceptions]
         protected UInt16 ReadUInt16(Int32 offset)
         {
             try
@@ -241,7 +246,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                return 0;
+                throw;
             }
         }
 
@@ -264,6 +269,7 @@ namespace X86.Interop
                 WriteUInt16(offset + (2 * i), value[i]);
         }
 
+        [HandleProcessCorruptedStateExceptions]
         protected Int32 ReadInt32(Int32 offset)
         {
             try
@@ -276,7 +282,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                return 0;
+                throw;
             }
         }
 
@@ -304,6 +310,7 @@ namespace X86.Interop
             return ret;
         }
 
+        [HandleProcessCorruptedStateExceptions]
         protected UInt32 ReadUInt32(Int32 offset)
         {
             return BitConverter.ToUInt32(ReadBytes(offset, sizeof(UInt32)), 0);
@@ -320,6 +327,7 @@ namespace X86.Interop
                 WriteUInt32(offset + (4 * i), value[i]);
         }
 
+        [HandleProcessCorruptedStateExceptions]
         protected Int64 ReadInt64(Int32 offset)
         {
             try
@@ -332,7 +340,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                return 0;
+                throw;
             }
         }
 
@@ -362,6 +370,7 @@ namespace X86.Interop
             WriteBytes(offset, BitConverter.GetBytes(value));
         }
 
+        [HandleProcessCorruptedStateExceptions]
         protected IntPtr ReadIntPtr(Int32 offset)
         {
             try
@@ -371,7 +380,7 @@ namespace X86.Interop
             catch (Exception ex)
             {
 #if DEBUG
-                string errMsg = string.Format("ReadIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
+                string errMsg = string.Format("ReadIntPtr failed at offset {0:x8} @ {1}", offset, BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
                 return IntPtr.Zero;
@@ -435,7 +444,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadAnsiString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                return null;
+                throw;
             }
         }
 
@@ -456,7 +465,7 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadUnicodeString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                return null;
+                throw;
             }
         }
 
