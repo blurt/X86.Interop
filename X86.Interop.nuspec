@@ -2,10 +2,10 @@
 <package >
   <metadata>
     <id>X86.Interop</id>
-    <version>0.2.2</version>
+    <version>0.2.3</version>
     <authors>blurt</authors>
     <owners>blurt</owners>
-    <licenseUrl>https://github.com/blurt/X86.Interop</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/blurt/X86.Interop</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET library to write X86 asm, patch code at runtime, and marshal complex unmanaged structures.</description>

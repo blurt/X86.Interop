@@ -7,7 +7,7 @@ using log4net;
 namespace X86.Interop
 {
     /// <summary>
-    /// Represents managed X86 assembly at a particular location in memory.
+    /// A managed block of X86 asm. Allocated on instantiation and free'd on disposal. Memory is marked as executable.
     /// </summary>
     public class ManagedX86Asm : X86Asm, IDisposable
     {
