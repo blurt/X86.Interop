@@ -20,6 +20,12 @@ namespace X86.Interop
 
         private static readonly MemoryManager MemoryManager = new MemoryManager();
 
+        /// <summary>
+        /// If true, all exceptions such as <see cref="AccessViolationException"/>s will be thrown.
+        /// By default, if marshalling fails, the default value is returned eg. 0, null
+        /// </summary>
+        public static bool ShouldThrowMarshalExceptions { get; set; }
+
         protected bool _isAllocated;
         protected readonly bool _isReference;
 
@@ -163,12 +169,12 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
             }
         }
 
         [HandleProcessCorruptedStateExceptions]
-        protected Byte ReadByte(Int32 offset)
+        protected byte ReadByte(Int32 offset)
         {
             try
             {
@@ -180,7 +186,8 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return 0;
             }
         }
 
@@ -196,7 +203,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
             }
         }
 
@@ -213,7 +220,8 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return 0;
             }
         }
 
@@ -229,7 +237,7 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
             }
         }
 
@@ -246,7 +254,8 @@ namespace X86.Interop
 #if DEBUG
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return 0;
             }
         }
 
@@ -282,7 +291,8 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return 0;
             }
         }
 
@@ -298,7 +308,7 @@ namespace X86.Interop
                 string errMsg = string.Format("WriteInt32 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
             }
         }
 
@@ -340,7 +350,8 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return 0;
             }
         }
 
@@ -356,7 +367,7 @@ namespace X86.Interop
                 string errMsg = string.Format("WriteInt64 failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
             }
         }
 
@@ -413,7 +424,7 @@ namespace X86.Interop
                 string errMsg = string.Format("WriteIntPtr failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
             }
         }
 
@@ -444,7 +455,8 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadAnsiString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return null;
             }
         }
 
@@ -453,7 +465,7 @@ namespace X86.Interop
             WriteBytes(offset, Encoding.ASCII.GetBytes(value));
         }
 
-        protected String ReadUnicodeString(Int32 offset)
+        protected string ReadUnicodeString(Int32 offset)
         {
             try
             {
@@ -465,7 +477,8 @@ namespace X86.Interop
                 string errMsg = string.Format("ReadUnicodeString failed at offset {0}", BaseAddress.AddOffset(offset).ToHexString());
                 Log.Error(errMsg, ex);
 #endif
-                throw;
+                if (ShouldThrowMarshalExceptions) throw;
+                return null;
             }
         }
 

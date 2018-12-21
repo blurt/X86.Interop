@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>X86.Interop</id>
-    <version>0.2.3</version>
+    <version>0.2.4</version>
     <authors>blurt</authors>
     <owners>blurt</owners>
     <license type="expression">MIT</license>
