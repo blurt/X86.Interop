@@ -58,7 +58,7 @@ namespace X86.Interop
         {
             byte[] asm = GetAsmBytes(IntPtr.Zero, writeAction);
             var managedAsm = new ManagedX86Asm(asm.Length);
-            managedAsm.Write(asm);
+            managedAsm.Write(writeAction);
             return managedAsm;
         }
         
